@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Product Stats</title>
+  <style>
+    body { font-family: sans-serif; font-size: 16px; color: #333; line-height: 1.6; }
+    #product-stats { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div id="product-stats">Loading stats...</div>
+
+  <script>
+  (function(){
+    var startDate = new Date('2025-07-01');
+    var today = new Date();
+    var diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+    var baseSeed = Math.floor(startDate.getTime() / (1000 * 60 * 60 * 24));
+    var baseSold = 1;
+    var baseLikes = 3;
+
+    function seededRandom(seed) {
+      var x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    }
+
+    var sold = baseSold;
+    var likes = baseLikes;
+    var soldLast7 = 0;
+
+    for (var i = 0; i < diffDays; i++) {
+      var dailySold = Math.floor(seededRandom(baseSeed + i) * 4) + 2;
+      var dailyLike = Math.floor(seededRandom(baseSeed + i + 999) * 2) + 1;
+      sold += dailySold;
+      likes += dailyLike;
+      if (i >= diffDays - 7) soldLast7 += dailySold;
+    }
+
+    var html = `
+      <p>⭐️⭐️⭐️⭐️☆ <span style='color: #999;'>(4.2 out of 5)</span></p>
+      <p>🛍 Sold: <strong>${sold}</strong> units</p>
+      <p>❤️ Liked by <strong>${likes}</strong> customers</p>
+      <p style='color: #666; font-size: 13px;'>ℹ️ In the past 7 days, <strong>${soldLast7}</strong> more people bought this product.</p>
+    `;
+    document.getElementById('product-stats').innerHTML = html;
+  })();
+  </script>
+</body>
+</html>
