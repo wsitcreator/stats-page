@@ -40,10 +40,11 @@
     var rating = Math.min(5, (likes / 20 + 3)).toFixed(1);  // هر 20 لایک = +1 ستاره از پایه 3
 
 var html =
-  '<p><span style="color: #ffd700; font-size: 20px;">⭐ ' + rating + ' out of 5</span></p>' +
+  '<p><span style="color: #ffd700; font-size: 20px;">⭐</span> <span style="color: #000;">' + rating + ' out of 5</span></p>' +
   '<p>📦 Sold: <strong>' + sold + '</strong> units</p>' +
   '<p>❤️ Liked by <strong>' + likes + '</strong> customers</p>' +
-  '<p style="color: #666; font-size: 13px;">📊 In the past 7 days, <strong>' + soldLast7 + '</strong> more people bought this product.</p>';
+  '<p style="color: #666; font-size: 13px;">📊 In the past 7 days, <strong>' + soldLast7 + '</strong></p>' +
+  '<p style="color: #666; font-size: 13px;">more people bought this product.</p>';
     document.getElementById('product-stats').innerHTML = html;
   })();
   </script>
